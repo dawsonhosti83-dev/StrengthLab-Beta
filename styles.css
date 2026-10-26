@@ -61,3 +61,10 @@ button{max-width:100%;overflow-wrap:anywhere}
  .nav button{font-size:9px}
 }
 @media(max-width:330px){.food-overview .big{font-size:22px}.row{gap:6px}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* v7: nutrition serving editor and per-muscle progress trend. */
+.progress-chart{padding:12px;background:var(--input);border:1px solid var(--line);border-radius:12px}
+.progress-chart svg{width:100%;height:90px;display:block}
+.progress-chart .row{font-size:11px}
+.food-overview .big{overflow-wrap:anywhere}
+@media(max-width:375px){.food-overview .big{font-size:23px}}

@@ -1,33 +1,27 @@
-# StrengthLab Beta v6 — iPhone workout and nutrition tracker
+# StrengthLab Beta v7 — iPhone / GitHub Pages
 
-StrengthLab is a static installable web app for logging custom training splits, individual and repeated working sets, foods, daily macros, fluids, and recovery. Its data is stored **locally in the browser** using the same `strengthlab-v1` storage key as v1–v5, preserving existing user records when the app is updated **at the same URL**. Always export a backup from Settings before replacing files.
+A personal, local-first exercise, food, hydration, and recovery logging web app.
 
-## What is new in v6
+## New in v7
 
-1. **Reusable workout templates by weekday:** Select a date/day in the Workout tab. Add any exercise from any custom muscle group and the number of working sets. StrengthLab saves that lineup for the selected weekday. Next time the day comes around, it fills in the most recent logged weight, repetitions, RIR and rest, which can be adjusted. Save/update the whole session with one button. Saving a second time updates the same template-linked set rather than duplicating it. Templates do not overwrite historical workouts and can be edited independently of logged sets. You can also import exercises from a previously logged session. Manual set logging remains available in a collapsible area.
-2. **Rest N/A** is available for each template working set and for manual working sets; in the data, `null` means rest was not recorded. It is not treated as 0 seconds in fatigue feedback.
-3. **Drink choices remain selected:** The fluid log supports water, sparkling water, coffee, tea, milk, juice, soda, protein shakes, sports and electrolyte drinks, and a custom drink name. Quick-add buttons are explicitly labeled as water. Fluid logging tracks volume only; for drinks with calories, enter nutrition separately as food.
-4. **Food tab calorie overview** mirrors the Today calorie goal/protein/carb/fat overview and follows the selected date.
-5. **Scanner usability:** Camera scanning has permission/HTTPS/readiness messages and several external script fallbacks. An image from Photos and an iPhone “take barcode photo” input are separate; native BarcodeDetector is used for photos where supported, otherwise a third-party `html5-qrcode` scanner is loaded from a CDN. The numeric-barcode entry remains available. Product metadata comes from Open Food Facts and requires internet. **The camera and photo scanner have not been tested on a physical iPhone.** In particular, iOS Safari typically needs the JavaScript fallback library because native BarcodeDetector is not enabled.
-6. **Small iPhone layouts:** Inputs, selectors, cards, and workout set editors use fluid columns and are checked at 320, 375 and 430 px widths.
+- **Editable repetition ranges:** Set a default min/max in Settings or Training Intelligence (1–50 reps). In Training Intelligence, select any saved custom muscle group to set its own optional override, or return to the default. Session feedback checks those ranges.
+- **Custom muscle group progress:** Training Intelligence lets you filter to every custom group (including groups present in historical records), review direct sets in the selected 7-day window versus the preceding 7 days, select a logged exercise, and view estimated best strength and last-session trends for that exercise. It never blends unrelated exercises into one strength score.
+- **Custom foods use Serving Size:** Enter an amount and a mass or volume unit, optional descriptive name (e.g. “1 scoop”), then enter calories, carbs, protein and fat **for that serving**, not per 100 units. Unit conversions remain available when logging. Previously saved foods still use their existing nutritional values correctly.
+- **Blank goals on fresh installs:** Calorie, protein, carbohydrate and fluid goals (and body weight) start empty. Empty goals show "Not set" instead of 0% or an invented target; they can be cleared later in Settings. Existing saved goals remain unchanged.
+- **Food log resets:** After saving a food to the diary, the selected food, portion, meal choice, and search fields reset. It does **not** delete the saved food or diary history. The food remains available for quick re-selection.
+- Retains the v6 workout template, camera/photo scanning, fluid types, theme picker, date-aware food totals and Recovery tab.
 
-## Uploading to GitHub Pages
+## Update on GitHub Pages
 
-1. **Export a JSON backup** in the existing app: Settings → Download JSON backup.
-2. Unzip `StrengthLab-Beta-v6-GitHub-Upload.zip` on your computer. It contains all **seven site files directly at the ZIP root**: `index.html`, `app.js`, `styles.css`, `sw.js`, `manifest.webmanifest`, `icon.svg`, `README.md`.
-3. Open your GitHub repository (`dawsonhosti83-dev/StrengthLab-Beta`) and navigate to **the exact folder containing your currently working `index.html`**. Your last screenshot showed `StrengthLab-Beta/StrengthLab-Beta/` (repository / nested folder).
-4. GitHub → Add file → Upload files. Select **the seven individual unzipped files**, not a parent folder or ZIP. Replace the existing files and commit.
-5. After GitHub Pages finishes deploying, fully close and reopen StrengthLab in Safari. A new `v6.0` script/style URL and service-worker cache name refresh assets.
+1. **Important:** From your existing running app go to **Settings → Download JSON backup**, and save it outside Safari.
+2. Extract this ZIP. It contains the seven app files **at the root** of the archive, not an enclosing `strengthlab` folder.
+3. In your GitHub repository, find the **existing `index.html` that is currently serving the live app**. Upload and replace the files **in that same directory**; do not create a `StrengthLab-Beta-v7` or `strengthlab-v7` folder.
+4. Commit changes and check the GitHub Actions deployment; refresh your Safari web app. If Safari keeps showing the old version, close and reopen it (and refresh in Safari). The service-worker cache version and assets are bumped to v7.
+5. Your training and food data uses the same browser local-storage key (`strengthlab-v1`) as previous releases, provided the **origin and URL path stay unchanged**.
 
-Keep the same URL path to keep access to the locally saved workouts and meals. Changing directories/URLs changes browser storage scope in some setups. If you change site path, export/import a JSON backup.
+### Notes
 
-## Camera permissions
-
-On a real iPhone, open the GitHub Pages HTTPS website in Safari and tap Food → Scan → Start live scanner. Allow the camera when prompted. If blocked, check Safari website camera permissions. For non-camera devices, use **Take a barcode photo**, **Choose existing photo**, or numeric manual UPC/EAN entry. The external barcode library and Open Food Facts lookup require an internet connection. If the app reports a third-party scanner could not load, inspect content-blocking extensions or network access. A readable, well-lit barcode image improves photo decoding.
-
-## Notes
-
-- The app does not sync workouts or meals to GitHub. GitHub Pages only hosts the software.
-- Session feedback highlights correlations, not diagnoses or proof that a factor caused performance changes.
-- Estimated 1RM is a derived estimate, not an actual tested maximum.
-- A food scanned via Open Food Facts can have incomplete nutritional information; verify the package label before relying on entries.
+- This is an installable web app, not an App Store application. Hosting on GitHub Pages uses HTTPS. The app has not been tested on a physical iPhone.
+- Nutrition and hydration records are stored on that browser only. Export backups regularly; moving to a different GitHub Pages URL/path may make past locally saved data inaccessible from the new address.
+- Camera scanning depends on Safari permission, device support, a scanner script from an external CDN, and an internet connection for product lookup. Manually entering a barcode remains an alternative.
+- Estimated 1RM and training feedback are descriptive performance signals, not direct measures of muscle growth or diagnoses of fatigue. Individual effort, range of motion and technique can alter these estimates.
