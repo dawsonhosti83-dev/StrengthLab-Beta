@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101a19" id="metaTheme">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="StrengthLab">
+<meta name="description" content="Private training, food, fluid and recovery diary">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./styles.css?v=3.1">
+<title>StrengthLab · Training & Nutrition</title>
+<script defer src="./app.js?v=3.1"></script>
+</head>
+<body>
+<main class="app">
+  <header>
+    <div><div class="eyebrow">Nutrition + Training Intelligence</div><h1>StrengthLab <span class="dot">●</span></h1></div>
+    <span class="pill"><span class="circle"></span>Beta v3</span>
+  </header>
+  <section id="today" class="tab-section"></section>
+  <section id="food" class="tab-section hidden"></section>
+  <section id="workout" class="tab-section hidden"></section>
+  <section id="recovery" class="tab-section hidden"></section>
+  <section id="insights" class="tab-section hidden"></section>
+  <section id="settings" class="tab-section hidden"></section>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<nav class="nav" id="nav" aria-label="Main navigation">
+ <button data-tab="today" class="active"><span class="glyph">⌂</span>Today</button>
+ <button data-tab="food"><span class="glyph">▤</span>Food</button>
+ <button data-tab="workout"><span class="glyph">▥</span>Workout</button>
+ <button data-tab="recovery"><span class="glyph">☾</span>Recovery</button>
+ <button data-tab="insights"><span class="glyph">▥</span>Insights</button>
+ <button data-tab="settings"><span class="glyph">⚙</span>Settings</button>
+</nav>
+</body>
+</html>
