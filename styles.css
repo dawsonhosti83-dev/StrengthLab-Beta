@@ -10,3 +10,54 @@ body{transition:background-color .12s ease,color .12s ease}
 input[type=range].hue::-webkit-slider-thumb{background:var(--accent);border:3px solid var(--bg);width:26px;height:26px;margin-top:-8px;box-shadow:0 0 0 2px var(--accent),0 0 0 4px var(--bg)}
 input[type=range].hue::-moz-range-thumb{background:var(--accent);border:3px solid var(--bg);height:22px;width:22px;box-shadow:0 0 0 2px var(--accent)}
 .theme-samples{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.theme-samples span{padding:12px 7px;border-radius:10px;border:1px solid var(--line);text-align:center;font-weight:700;font-size:11px}.theme-samples .sample-panel{background:var(--panel2)}.theme-samples .sample-accent{background:var(--accent);color:var(--accent-dark)}.theme-samples .sample-surface{background:var(--bg)}
+
+/* v6: compact tap targets and safe responsive field sizing for iPhone Safari. */
+:where(.app,.card,.folder,.row,.grid,.grid3,.unit-row,.template-fields) > *{min-width:0;max-width:100%}
+:where(.row,.card,.folder,.mini,.kpi,.stat,.hint,.pill,.template-muscle){overflow-wrap:anywhere}
+input,select,textarea{font-size:16px;max-width:100%}select{overflow:hidden;text-overflow:ellipsis}
+button{max-width:100%;overflow-wrap:anywhere}
+.row > .btn:not(.icon){flex-shrink:1}.buttons > .btn{min-width:0}
+.unit-row{grid-template-columns:minmax(0,1fr) minmax(100px,37%)}
+.template-section{background:var(--panel)}
+.template-section h3{margin-bottom:4px}
+.template-item{margin:0;border-color:var(--line);background:var(--panel2)}
+.template-item summary{align-items:flex-start}
+.template-item summary>span:first-child{min-width:0;flex:1}
+.template-muscle{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:4px}
+.template-body{padding-top:11px}
+.template-set{background:var(--input);border:1px solid var(--line);border-radius:12px;padding:11px;margin:9px 0}
+.template-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:9px}
+.template-fields input,.template-fields select{width:100%;min-width:0}
+.template-check{display:inline-flex;align-items:center;gap:7px;font-weight:700;color:var(--text);font-size:13px}
+.template-check input{width:20px;height:20px;margin:0}
+.template-rest-input,.field-subinput{margin-top:7px}
+.template-create{padding:12px;background:var(--input);border:1px dashed var(--line);border-radius:12px;display:grid;gap:9px}
+.template-create .unit-row{grid-template-columns:minmax(0,1fr) minmax(90px,27%)}
+.manual-logging{padding:0;overflow:hidden}
+.manual-logging>summary{padding:15px}
+.manual-logging .embedded-card{margin:0;border-radius:0;border-left:0;border-right:0;border-bottom:0}
+.food-overview .progress{margin-top:0}
+.food-overview .stat{font-size:18px}
+.food-overview .kpi{padding:10px}
+.food-overview .bar{margin:7px 0}
+.scan-upload-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.scan-upload-grid input[type=file]{width:100%;font-size:13px;padding:12px 8px;line-height:1.5}
+.scan-upload-grid>div{min-width:0}
+.scanner-status{background:var(--input);border:1px solid var(--line);border-radius:9px;padding:10px;font-size:12px;line-height:1.4;color:var(--muted)}
+.scanner-status[data-kind=warning]{border-color:hsl(40 55% 42%);color:hsl(40 90% 76%)}
+.camera-frame{min-height:100px}
+@media(max-width:390px){
+ .app{padding-left:10px;padding-right:10px}
+ .card{padding:12px}
+ .grid{gap:7px}
+ .grid3{gap:5px}
+ .grid3 .stat,.food-overview .stat{font-size:15px;letter-spacing:-.5px}
+ .grid3 .kpi{padding:8px 6px}
+ .grid3 .tag,.grid3 .hint{font-size:10px}
+ .unit-row{grid-template-columns:minmax(0,1fr) minmax(92px,36%)}
+ .template-fields{gap:7px}
+ .template-set{padding:9px}
+ .btn{padding:10px 9px}
+ .nav button{font-size:9px}
+}
+@media(max-width:330px){.food-overview .big{font-size:22px}.row{gap:6px}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}}
