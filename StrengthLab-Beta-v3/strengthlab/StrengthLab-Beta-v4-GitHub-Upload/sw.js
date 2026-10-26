@@ -1,4 +1,0 @@
-const CACHE='strengthlab-v4-0';const PRELOAD=['./','./index.html','./app.js?v=4.0','./styles.css?v=4.0','./manifest.webmanifest','./icon.svg'];
-self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(PRELOAD)));self.skipWaiting()});
-self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('strengthlab-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
-self.addEventListener('fetch',event=>{const req=event.request;const url=new URL(req.url);if(req.method!=='GET'||url.origin!==self.location.origin)return;event.respondWith(fetch(req).then(resp=>{if(resp.ok){const clone=resp.clone();caches.open(CACHE).then(cache=>cache.put(req,clone)).catch(()=>{})}return resp}).catch(()=>caches.match(req)))});
